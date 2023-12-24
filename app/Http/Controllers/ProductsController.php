@@ -15,6 +15,6 @@ class ProductsController extends Controller
         // return $store->products;
         #return all products not related with specific store
         // dd("sss");
-        return Product::all();
+        // return Product::all();
     }
 } 

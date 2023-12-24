@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -175,6 +176,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        #اسجل TenancyServiceProvider
+        App\Providers\TenancyServiceProvider::class,
     ],
 
     /*

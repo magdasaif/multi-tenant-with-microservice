@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SubdomainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +17,21 @@ use App\Http\Controllers\ProductsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
-Route::get('/', function () {
-    return view('welcome');
-});
-//to apply for all routes
-Route::middleware('SetActiveStore')->group(function () {
-    Route::get('/products', [ProductsController::class, 'index']);
-  });
+#routes related centeral domain
+// Auth::routes();
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/users', [UserController::class, 'users']);
+ Route::get('/allusers', function () {dd(User::all());});
+
+Route::get('/createsubdomain', [SubdomainController::class, 'CreateTenant']);
+
+// //to apply for all routes
+// Route::middleware('SetActiveStore')->group(function () {
+//     // Route::get('/products', [ProductsController::class, 'store']);
+  
+//     Route::get('/createsubdomain', [SubdomainController::class, 'CreateTenant']);
+// });
 
 
