@@ -33,7 +33,7 @@ class CreateStoreDatabase
         $db_name="tenancy_store_{$store->id}";  #اسم الداتا بيز 
         #==========================================================================#
         #update on store table for database_options column
-        $store->database_options=["dbname"=>$db_name,];
+        // $store->database_options=["dbname"=>$db_name,];
         #==========================================================================#
         $old_connection=Config::get('database.connections.mysql.database',$db_name);
         #change defualt for connection in database.php
