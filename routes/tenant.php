@@ -31,7 +31,7 @@ Route::middleware([
 ])->group(function () { 
     #roues related tenants
     // Route::get('/', function () {dd(User::all());});
-    Route::get('/users', [UserController::class, 'users']);
+    Route::get('/tenantusers', [UserController::class, 'users']);
 
     Route::get('/createuser', [UserController::class, 'CreateUser']);
 

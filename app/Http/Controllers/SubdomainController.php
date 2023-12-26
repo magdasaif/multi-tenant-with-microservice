@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 class SubdomainController extends Controller
 {
     #create tenant 
-    public function CreateTenant()
+    public function CreateTenant(Request $request)
     {
-        $tenant1 = Tenant::create(['id' => 'tenant4']);
-        $tenant1->domains()->create(['domain' => 'tenant4.localhost']);
+        // dd(($request->tenant_name));
+        $tenant1 = Tenant::create(['id' => $request->tenant_name]);
+        $tenant1->domains()->create(['domain' => $request->tenant_name.'.localhost']);
+        return "done";
 
     }
 }

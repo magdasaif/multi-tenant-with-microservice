@@ -1,0 +1,18 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+type Query 
+{
+  allusers: [User] @field(resolver: "App\\Http\\Controllers\\UserController@users") 
+  test: message @field(resolver: "App\\Http\\Controllers\\UserController@tests") 
+
+}
+#===========================#
+type User
+{
+  # id: ID!
+  name: String!
+  email: String!
+}
+#===========================#
+type message {
+    message: String!
+}
