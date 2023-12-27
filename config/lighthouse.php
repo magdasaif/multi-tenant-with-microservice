@@ -1,7 +1,9 @@
 <?php
 
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
-use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+
+// use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 return [
     /*
@@ -45,8 +47,8 @@ return [
             // \Nuwave\Lighthouse\Support\Http\Middleware\LogGraphQLQueries::class,
          #========================================================================================================#
          #To Apply 
-         InitializeTenancyByDomain::class,
-         PreventAccessFromCentralDomains::class,
+        //  InitializeTenancyByDomain::class,
+        // PreventAccessFromCentralDomains::class,  //return in sub all user of centeral and make centeral not work
          #========================================================================================================#
         ],
 
@@ -190,11 +192,17 @@ return [
         'interfaces' => 'App\\GraphQL\\Interfaces',
         'unions' => 'App\\GraphQL\\Unions',
         'scalars' => 'App\\GraphQL\\Scalars',
-        // 'directives' => ['App\\GraphQL\\Directives'],
-        'directives' => [
-            // Other directives...
-            // \Stancl\Tenancy\Lighthouse\TenantDirective::class,     
-           ],
+         'directives' => [
+            'App\\GraphQL\\Directives',
+            // 'App\\GraphQL\\Directives\\SubDomainDirective',
+            '\App\\GraphQL\\Directives\\MiddlewareDirective::class',
+            'subDomain' => \App\GraphQL\Directives\SubDomainDirective::class,
+
+        ],
+        // 'directives' => [
+        //     // Other directives...
+        //     // \Stancl\Tenancy\Lighthouse\TenantDirective::class,     
+        //    ],
         'validators' => ['App\\GraphQL\\Validators'],
     ],
 

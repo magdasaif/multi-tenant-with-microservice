@@ -4,10 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Stancl\Tenancy\Facades\Tenancy;
 use Illuminate\Support\Facades\Hash;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 class UserController extends Controller
 {
+    
+
+    // public function __construct()
+    // {
+    //     $this->middleware([
+    //         InitializeTenancyByDomain::class,
+    //         PreventAccessFromCentralDomains::class,
+    //     ]);
+    // }
     public function CreateUser(Request $request)
     {
         $user=User::create([
@@ -20,6 +33,19 @@ class UserController extends Controller
     #==========================================#
     public function users()
     {
+
+        // $request = app(Request::class);
+        // $hostParts = explode('.', $request->getHost());
+        // $subdomain = $hostParts[0]; // Extract subdomain from the host
+        
+        // Tenancy::initialize($subdomain); // Initialize tenancy for the subdomain
+        
+    //    $user = User::all();
+        
+        // return $user;
+
+        
+        // return DB::getDefaultConnection();
       return  $user=User::all();
     }
     //=====================================

@@ -3,12 +3,20 @@ type Query
 {
   allusers: [User] @field(resolver: "App\\Http\\Controllers\\UserController@users") 
   test: message @field(resolver: "App\\Http\\Controllers\\UserController@tests") 
+  # subdomainusers:  [User] @field(resolver: "App\\Http\\Controllers\\UserController@users")@middleware(checks: ["PreventAccessFromCentralDomains"]) 
+  # subdomainusers:  [User] @field(resolver: "App\\Http\\Controllers\\UserController@users")
+  # centeraldomainusers: [User] @field(resolver: "App\\Http\\Controllers\\CentralDomainController@index") 
 
+#======================================
+ 
+  subdomainusers:  [User] @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@subdomainusers")
+  # subdomainusers: [User]  @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@subdomainusers")@subDomain(classes: ["Stancl\\Tenancy\\Middleware\\InitializeTenancyByDomain","Stancl\\Tenancy\\Middleware\\PreventAccessFromCentralDomains"])
+  centeraldomainusers: [User]  @field(resolver: "App\\GraphQL\\Queries\\CenteralDomainUsersQuery@centeraldomainusers")
 }
 #===========================#
 type User
 {
-  # id: ID!
+  id: ID!
   name: String!
   email: String!
 }

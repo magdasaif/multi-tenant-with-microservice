@@ -1,14 +1,12 @@
 <?php
-
-namespace App\Http\Controllers;
-
+namespace App\GraphQL\Queries;
 use App\Models\User;
 use App\Models\Tenant;
 use Stancl\Tenancy\Facades\Tenancy;
 
-class CentralDomainController extends Controller
+class CenteralDomainUsersQuery
 {
-    public function index()
+    public function centeraldomainusers($root, array $args, $context, $info)
     {
         $tenants =Tenant::all();
         $users = [];
@@ -21,7 +19,5 @@ class CentralDomainController extends Controller
             $users = array_merge($users, $tenantusers->toArray());
         }
         return $users;
-        // return response()->json($users);
     }
 }
-
