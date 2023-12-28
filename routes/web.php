@@ -18,24 +18,15 @@ use App\Http\Controllers\CentralDomainController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//===========================================================================//
 #routes related centeral domain
 // Auth::routes();
 Route::get('/users', function () {dd(User::all());});
-Route::get('/createsubdomain/{tenant_name}', [SubdomainController::class, 'CreateTenant']);
+Route::get('/createsubdomain/{target}/{tenant_name}',[SubdomainController::class, 'CreateTenant']);
 Route::get('/users/{user}'                 , [UserController::class, 'show']);
 Route::get('/users/{user_id}/posts'        , [UserController::class, 'postOfUser']);
 Route::get('/usersrelations'               , [UserController::class, 'usersrelations']);
 Route::get('/subdomainsusers'              , [CentralDomainController::class, 'index']);
-
-
-
-
-
-
-
-
-
-
 //===========================================================================//
 // //to apply for all routes
 // Route::middleware('SetActiveStore')->group(function () {

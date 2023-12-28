@@ -15,9 +15,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('restrict');
+            // $table->foreignId('store_id')->nullable()->references('id')->on('stores')->onDelete('cascade');
+            // $table->foreignId('store_id')->nullable()->references('id')->on('stores')->onDelete('cascade')->default(1);
             $table->string('name');
-            $table->float('price');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

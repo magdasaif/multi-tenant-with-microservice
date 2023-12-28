@@ -79,7 +79,7 @@ class RegisterController extends Controller
                     'domain' => $data['name'].'.localhost',
                 ]);
                 #==========================================================================#
-                $db_name="tenancy_store_{$store->id}";  #اسم الداتا بيز 
+                $db_name="tenancywithmicroservices_{$store->id}";  #اسم الداتا بيز 
                 // dd("tenancy_store_{$store->id}");
                 #update on store table for database_options column
                 $store->database_options=["dbname"=>$db_name,];
