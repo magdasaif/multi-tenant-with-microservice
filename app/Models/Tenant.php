@@ -12,4 +12,9 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 {
     use HasFactory;
     use HasDatabase, HasDomains;
+    protected $fillable = [
+        'id',
+        'tenancy_db_names',
+        'data'
+    ];
 }

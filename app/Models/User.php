@@ -18,6 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // protected $connection='tenant';
     protected $fillable = [
         'name',
         'email',
