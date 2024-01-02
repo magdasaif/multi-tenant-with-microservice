@@ -23,10 +23,14 @@ use App\Http\Controllers\CentralDomainController;
 // Auth::routes();
 Route::get('/users', function () {dd(User::all());});
 Route::get('/createsubdomain/{target}/{tenant_name}',[SubdomainController::class, 'CreateTenant']);
+
+// Route::get('/createsubdomain/{app}/{app_type}/{tenant_name}',[SubdomainController::class, 'CreateTenant']);
 Route::get('/users/{user}'                 , [UserController::class, 'show']);
 Route::get('/users/{user_id}/posts'        , [UserController::class, 'postOfUser']);
 Route::get('/usersrelations'               , [UserController::class, 'usersrelations']);
 Route::get('/subdomainsusers'              , [CentralDomainController::class, 'index']);
+Route::get('/UpdateDbTenant/{id}'          , [SubdomainController::class, 'UpdateDbTenant']);
+
 //===========================================================================//
 // //to apply for all routes
 // Route::middleware('SetActiveStore')->group(function () {

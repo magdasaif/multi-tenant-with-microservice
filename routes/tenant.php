@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TenantController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -34,5 +35,6 @@ Route::middleware([
     Route::get('/tenantusers', [UserController::class, 'users']);
 
     Route::get('/createuser', [UserController::class, 'CreateUser']);
+    Route::get('/test_cart',[TenantController::class, 'testCart']);
 
 });

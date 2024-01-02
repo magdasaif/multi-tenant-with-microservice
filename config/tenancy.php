@@ -187,16 +187,16 @@ return [
     /**
      * Parameters used by the tenants:migrate command.
      */
-    // 'migration_parameters' => [
-    //     '--force' => true, // This needs to be true to run migrations in production.
-    //     '--path' => [database_path('migrations/tenant')],
-    //     '--realpath' => true,
-    // ],
     'migration_parameters' => [
         '--force' => true, // This needs to be true to run migrations in production.
-        '--path' => [database_path('migrations/sidalih/productservice')],
+        '--path' => [database_path('migrations/tenant')],
         '--realpath' => true,
     ],
+    // 'migration_parameters' => [
+    //     '--force' => true, // This needs to be true to run migrations in production.
+    //     '--path' => [database_path('migrations/sidalih/productservice')],
+    //     '--realpath' => true,
+    // ],
     /**
      * Parameters used by the tenants:seed command.
      */

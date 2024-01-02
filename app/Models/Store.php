@@ -16,12 +16,12 @@ class Store extends Model
         'database_options'
     ];
     protected $casts=['database_options'=> 'array'];
-    public function categories()
-    {
-        return $this->hasMany(Category::class);
-    }
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
+    // public function categories()
+    // {
+    //     return $this->hasMany(Category::class);
+    // }
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
 }
