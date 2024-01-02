@@ -30,15 +30,15 @@ class SubdomainController extends Controller
                 #==========================================================================#
                 //create new driver for each directory
                 #change defualt for connection in database.php
-                $db=$project_name.'_'.$dir.'_'.$domain;
+                $db=$project_name.'_'.$domain.'_'.$dir;
                 Config::set("database.connections.$db", [
-                        'driver' => env('DB_CONNECTION', 'mysql'),
-                        'host' => env('DB_HOST', '127.0.0.1'),
-                        'port' => env('DB_PORT', '3306'),
-                        'database' => $db,
-                        'username' => env('DB_USERNAME', 'root'),
-                        'password' => env('DB_PASSWORD', 'murabbadev'),
-                    ]);
+                    'driver' => env('DB_CONNECTION', 'mysql'),
+                    'host' => env('DB_HOST', '127.0.0.1'),
+                    'port' => env('DB_PORT', '3306'),
+                    'database' => $db,
+                    'username' => env('DB_USERNAME', 'root'),
+                    'password' => env('DB_PASSWORD', 'murabbadev'),
+                ]);
                 Config::set("database.connections.default",$db);
                 // Config::set('database.connections.tenant.database',$db);
                 #==========================================================================#

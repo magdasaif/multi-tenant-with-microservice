@@ -33,8 +33,15 @@ Route::middleware([
     #roues related tenants
     // Route::get('/', function () {dd(User::all());});
     Route::get('/tenantusers', [UserController::class, 'users']);
-
     Route::get('/createuser', [UserController::class, 'CreateUser']);
-    Route::get('/test_cart',[TenantController::class, 'testCart']);
+
+    //========================================================================
+    //test microservice dbs
+    Route::get('/setting',[TenantController::class, 'setting']);
+    Route::get('/order_status',[TenantController::class, 'OrderStatus']);
+    Route::get('/product_status',[TenantController::class, 'productStatus']);
+    Route::get('/erad_users',[TenantController::class, 'eradUsers']);
+    //========================================================================
+
 
 });
