@@ -25,42 +25,51 @@ class SubdomainController extends Controller
             #==========================================================================#
             //create dbs fore each dirctory in selected project/target
             #==========================================================================#
+            $i=0;
             foreach($directories as $dir){
-                // Config::set('tenancy.migration_parameters.--path',database_path('migrations/'.$project_name.'/',$dir));
-                #==========================================================================#
-                //create new driver for each directory
-                #change defualt for connection in database.php
                 $db=$project_name.'_'.$domain.'_'.$dir;
-                Config::set("database.connections.$db", [
-                    'driver' => env('DB_CONNECTION', 'mysql'),
-                    'host' => env('DB_HOST', '127.0.0.1'),
-                    'port' => env('DB_PORT', '3306'),
-                    'database' => $db,
-                    'username' => env('DB_USERNAME', 'root'),
-                    'password' => env('DB_PASSWORD', 'murabbadev'),
-                ]);
-                Config::set("database.connections.default",$db);
-                // Config::set('database.connections.tenant.database',$db);
-                #==========================================================================#
-                #create batabase
-                DB::statement("CREATE DATABASE IF NOT EXISTS `".$db."`");#true
-                $all_dbs[]=$db;
-               #==========================================================================#
-                #db migration through Artisan for each db
-                #Artisan::call() -->بعمل من خلاله كول لاى كوماند انا عايزاه
-                #migrate--> بياخد اكتر من براميتر (path ,database)
-                Artisan::call('migrate',
-                [
-                    '--path'       =>  'database/migrations/'.$project_name.'/'.$dir,
-                    // '--database'   =>   'tenant',
-                    '--database'   =>   $db,
-                    '--force'      =>   true, #علشان ينفذ الميجريت بدون ما يسأل 
-                ]);
-                #==========================================================================#
-                #reurn connection to defualt
-                // Config::set("database.connections.default",'mysql');
-                // DB::setDefaultConnection('mysql');
-                #==========================================================================#
+                if($i==0){
+                    Config::set('tenancy.database.prefix','');
+                    Config::set('tenancy.database.suffix','_'.$dir);
+                    Config::set('tenancy.migration_parameters.--path',database_path('migrations/'.$project_name.'/',$dir));
+                    $all_dbs[]=$db;
+                }else{
+                    #==========================================================================#
+                    //create new driver for each directory
+                    #change defualt for connection in database.php
+                    $db=$project_name.'_'.$domain.'_'.$dir;
+                    Config::set("database.connections.$db", [
+                        'driver' => env('DB_CONNECTION', 'mysql'),
+                        'host' => env('DB_HOST', '127.0.0.1'),
+                        'port' => env('DB_PORT', '3306'),
+                        'database' => $db,
+                        'username' => env('DB_USERNAME', 'root'),
+                        'password' => env('DB_PASSWORD', 'murabbadev'),
+                    ]);
+                    Config::set("database.connections.default",$db);
+                    // Config::set('database.connections.tenant.database',$db);
+                    #==========================================================================#
+                    #create batabase
+                    DB::statement("CREATE DATABASE IF NOT EXISTS `".$db."`");#true
+                    $all_dbs[]=$db;
+                   #==========================================================================#
+                    #db migration through Artisan for each db
+                    #Artisan::call() -->بعمل من خلاله كول لاى كوماند انا عايزاه
+                    #migrate--> بياخد اكتر من براميتر (path ,database)
+                    Artisan::call('migrate',
+                    [
+                        '--path'       =>  'database/migrations/'.$project_name.'/'.$dir,
+                        // '--database'   =>   'tenant',
+                        '--database'   =>   $db,
+                        '--force'      =>   true, #علشان ينفذ الميجريت بدون ما يسأل 
+                    ]);
+                    #==========================================================================#
+                    #reurn connection to defualt
+                    // Config::set("database.connections.default",'mysql');
+                    // DB::setDefaultConnection('mysql');
+                    #==========================================================================#
+                }
+                $i++;
             }
         }else{//monolitic
             //==============================================================
