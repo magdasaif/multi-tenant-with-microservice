@@ -7,20 +7,32 @@ type Query
   # subdomainusers:  [User] @field(resolver: "App\\Http\\Controllers\\UserController@users")
   # centeraldomainusers: [User] @field(resolver: "App\\Http\\Controllers\\CentralDomainController@index") 
 
-#======================================
+  #======================================
  
-  subdomainusers:  [User] @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@subdomainusers")
+  subdomainusers:[User] @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@subdomainusers")
   # subdomainusers: [User]  @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@subdomainusers")@subDomain(classes: ["Stancl\\Tenancy\\Middleware\\InitializeTenancyByDomain","Stancl\\Tenancy\\Middleware\\PreventAccessFromCentralDomains"])
   centeraldomainusers: [User]  @field(resolver: "App\\GraphQL\\Queries\\CenteralDomainUsersQuery@centeraldomainusers")
+  cart_setting:[Setting] @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@getSettingFromCart")
+  product_status:[Status] @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@productStatus")
+  order_status:[OrderStatus] @field(resolver: "App\\GraphQL\\Queries\\SubDomainUsersQuery@orderStatus")
 }
 #===========================#
-type User
-{
-  id: ID!
-  name: String!
-  email: String!
+type User{
+  id: ID
+  name: String
+  email: String
 }
 #===========================#
-type message {
-    message: String!
+type Status {
+    title: String!
+    color: String!
+}
+#===========================#
+type Setting {
+    order_max_id: ID
+}
+#===========================#
+type OrderStatus {
+    status: String!
+    title: String!
 }
